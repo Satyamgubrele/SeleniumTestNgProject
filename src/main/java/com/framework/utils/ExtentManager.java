@@ -3,19 +3,30 @@ package com.framework.utils;
 import com.aventstack.extentreports.*;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
+import java.io.File;
+
 public class ExtentManager {
 
-    static ExtentReports extent;
+    private static ExtentReports extent;
 
     public static ExtentReports getInstance() {
 
-        ExtentSparkReporter spark =
-                new ExtentSparkReporter("reports/Report.html");
+        if (extent == null) {
 
-        spark.config().setReportName("Automation Report");
+            String reportDir = System.getProperty("user.dir") + "/reports";
+            File folder = new File(reportDir);
+            if (!folder.exists()) {
+                folder.mkdirs();   // 🔥 Creates folder in Jenkins
+            }
 
-        extent = new ExtentReports();
-        extent.attachReporter(spark);
+            String reportPath = reportDir + "/index.html";
+
+            ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
+            spark.config().setReportName("Automation Report");
+
+            extent = new ExtentReports();
+            extent.attachReporter(spark);
+        }
 
         return extent;
     }
