@@ -7,7 +7,7 @@ public class ProductPage {
     WebDriver driver;
     public String productPageUrl="https://www.saucedemo.com/inventory.html";
     By title = By.className("title");
-
+    By addToCartBtn=By.name("add-to-cart-sauce-labs-backpack");
     public ProductPage(WebDriver driver){
         this.driver = driver;
     }
@@ -18,4 +18,6 @@ public class ProductPage {
     public String getPageUrl(){
         return productPageUrl;
     }
+
+
 }

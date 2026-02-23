@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ProductTest extends BaseTest {
+    //hI THIS IS SATYAM
     ProductPage productPage=new ProductPage(driver);
     @Test
     public void verifyProductsPage(){
